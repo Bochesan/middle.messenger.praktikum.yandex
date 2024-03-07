@@ -1,0 +1,22 @@
+@import '../../styles/helpers/index.styl';
+.button
+	outline: none;
+	padding: set-rem(8px) set-rem(16px);
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	border-radius: set-rem(2px);
+	set-font(18px, 400, 1);
+	color: $color-black;
+	cursor: pointer;
+	transition: 0.3s;
+
+	&:hover
+		opacity: 0.4;
+
+	&:active
+		opacity: 0.6;
+
+	&[disabled]
+		cursor: default;
+		opacity: 0.2;
+		color: inherit;

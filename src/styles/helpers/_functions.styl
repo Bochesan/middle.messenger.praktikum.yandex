@@ -1,0 +1,27 @@
+set-rem(value) { /* separate mixin, so it can be used elsewhere */
+	u = unit(value);
+
+	if (u is 'px') {
+		return unit(value/$font-size-base, 'rem');
+	} else {
+		return unit(value, u);
+	}
+}
+
+set-font-size(value) {
+	font-size: value; /* add PX (or original value) as backup */
+
+	if (value is inherit) {
+		/* do nothing, "inherit" has no unit */
+	} else {
+		font-size: set-rem(value);
+	}
+}
+
+set-font(size, weight = normal, lineHeight = 1.2, fontFamily = 'Nunito') {
+	font-family: fontFamily, sans-serif;
+	set-font-size(size);
+	line-height: lineHeight;
+	font-weight: weight;
+	font-style: normal;
+}
