@@ -6,13 +6,15 @@ import * as Pages from './pages';
 
 const pages: Record<string, any> = {
 	'auth': [Pages.AuthPage],
-	'register': [Pages.RegisterPage]
+	'register': [Pages.RegisterPage],
+	'404': [Pages.Error404],
+	'500': [Pages.Error500],
 };
 
-Object.entries(Components).forEach(([ name, component ]) => {
+Object.entries(Components).forEach(([name, component]) => {
 	Handlebars.registerPartial(name, component);
 });
-Object.entries(Modules).forEach(([ name, component ]) => {
+Object.entries(Modules).forEach(([name, component]) => {
 	Handlebars.registerPartial(name, component);
 });
 
@@ -40,4 +42,10 @@ document.addEventListener('click', e => {
 			}
 		}
 	}
+});
+
+// For develop
+document.addEventListener('DOMContentLoaded', () => {
+	const handlebarsCompileHTML = Handlebars.compile(Modules.ModuleSitemap);
+	return document.querySelector<HTMLElement>('#sitemap')!.innerHTML = handlebarsCompileHTML(undefined);
 });

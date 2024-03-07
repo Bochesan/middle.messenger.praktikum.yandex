@@ -1,5 +1,7 @@
 @import '../../styles/helpers/index.styl';
 .button
+	display: inline-block;
+	text-align: center;
 	outline: none;
 	padding: set-rem(8px) set-rem(16px);
 	background: #FFFFFF;
@@ -9,6 +11,9 @@
 	color: $color-black;
 	cursor: pointer;
 	transition: 0.3s;
+
+	&--link
+		text-decoration: none;
 
 	&:hover
 		opacity: 0.4;
