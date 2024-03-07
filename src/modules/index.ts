@@ -3,4 +3,7 @@ export { ModuleAuthHeader } from './auth/auth-header';
 export { ModuleAuthMain } from './auth/auth-main';
 export { ModuleAuthFooter } from './auth/auth-footer';
 export { ModuleError } from './error';
+export { ModuleChatDialog } from './chat/chat-dialog';
+export { ModuleChatAside } from './chat/chat-aside';
+export { ModuleChatMain } from './chat/chat-main';
 export { ModuleSitemap } from './develop/sitemap';

@@ -9,6 +9,7 @@ const pages: Record<string, any> = {
 	'register': [Pages.RegisterPage],
 	'404': [Pages.Error404],
 	'500': [Pages.Error500],
+	'chat': [Pages.ChatPage],
 };
 
 Object.entries(Components).forEach(([name, component]) => {
