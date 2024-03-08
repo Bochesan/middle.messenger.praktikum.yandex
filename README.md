@@ -57,4 +57,8 @@ node server.js
 npm run build
 ```
 
+Сборка и запуск проекта
+```bash
+npm run start
+```
 ___
