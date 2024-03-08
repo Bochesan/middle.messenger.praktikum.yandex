@@ -1,13 +1,10 @@
 set-rem(value)
 
-  if (u is 'px')
+  if (unit(value) is 'px')
     return unit(value/$font-size-base, 'rem')
 
   else
-    return unit(value, u)
-  // separate mixin, so it can be used elsewhere
-  u = unit(value)
-
+    return unit(value, unit(value))
 
 set-font-size(value)
 
