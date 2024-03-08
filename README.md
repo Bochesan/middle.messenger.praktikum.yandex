@@ -11,6 +11,9 @@ ___
 - <a href="https://dazzling-cucurucho-d11e83.netlify.app/" target="_blank">Главная</a>
 - <a href="https://dazzling-cucurucho-d11e83.netlify.app/auth" target="_blank">Вход/Авторизация</a>
 - <a href="https://dazzling-cucurucho-d11e83.netlify.app/register" target="_blank">Регистрация</a>
+- <a href="https://dazzling-cucurucho-d11e83.netlify.app/profile" target="_blank">Профиль</a>
+- <a href="https://dazzling-cucurucho-d11e83.netlify.app/edit" target="_blank">Изменение данных</a>
+- <a href="https://dazzling-cucurucho-d11e83.netlify.app/change-password" target="_blank">Смена пароля</a>
 - <a href="https://dazzling-cucurucho-d11e83.netlify.app/404" target="_blank">404</a>
 - <a href="https://dazzling-cucurucho-d11e83.netlify.app/500" target="_blank">500</a>
 ___
@@ -43,6 +46,7 @@ ___
 - <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=2002-102&mode=design" target="_blank">Страница авторизации и регистрации</a>
 - <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=2008-4111&mode=design" target="_blank">Страница профиля и редактирования</a>
 - <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=2005-1077&mode=design" target="_blank">Страница чата</a>
+- <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=2008-4111&mode=design" target="_blank">Профиль</a>
 - <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=2009-4624&mode=design" target="_blank">Страница ошибок 404 и 500</a>
 - <a href="https://www.figma.com/file/5km8D0YCqLN719zactnsAS/middle.messenger.praktikum.yandex?type=design&node-id=11-824&mode=design" target="_blank">UI</a>
 

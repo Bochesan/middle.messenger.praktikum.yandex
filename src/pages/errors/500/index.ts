@@ -5,7 +5,7 @@ export const Error500 = `
 		errorCode="500"
 		errorMessage="Мы уже фиксим"
 	}}
-		{{> Button text="Назад к чатам" url="/" page="auth" }}
+		{{> Button text="Назад к чатам" url="/" }}
 	{{/ ModuleError }}
 {{/ Dialog }}
 `;

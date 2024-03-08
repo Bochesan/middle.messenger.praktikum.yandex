@@ -7,6 +7,7 @@ export const InputField = `
 		{{#if inputType}} type="{{inputType}}" {{else}}type="text"{{/if}}
 		{{#if inputPlaceholder}}placeholder="{{inputPlaceholder}}"{{/if}}
 		{{#if inputName}}name="{{inputName}}"{{/if}}
+		{{#if inputValue}}value="{{inputValue}}"{{/if}}
 	>
 	<span class="input-field__error">{{ inputError}}</span>
 </label>

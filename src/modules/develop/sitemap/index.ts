@@ -8,6 +8,9 @@ export const ModuleSitemap = `
 		<a href="/404" class="link">Ошибка 404</a>
 		<a href="/500" class="link">Ошибка 500</a>
 		<a href="/" class="link">Чат</a>
+		<a href="/profile" class="link">Профиль</a>
+		<a href="/edit" class="link">Редактирование профиля</a>
+		<a href="/change-password" class="link">Изменение пароля</a>
 	</div>
 </div>
 `;

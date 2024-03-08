@@ -6,3 +6,4 @@ export { InputField } from './input-field';
 export { ChatLayout } from './chat/chat-layout';
 export { ChatItem } from './chat/chat-item';
 export { ChatAvatar } from './chat/chat-avatar';
+export { Param } from './param';
