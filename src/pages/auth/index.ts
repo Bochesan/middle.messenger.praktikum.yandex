@@ -3,7 +3,7 @@ export const AuthPage = `
 	{{#> ModuleAuthForm formId="authForm" formMethod="POST" formAction="/api/v1/login/" }}
 		{{#> ModuleAuthHeader }}
 			{{#> AuthTabButton }}
-				{{> Link url="/login" page="auth" disabled="true" text="Войти" }}
+				{{> Link url="/auth" page="auth" disabled="true" text="Авторизация" }}
 			{{/ AuthTabButton }}
 			{{#> AuthTabButton }}
 				{{> Link url="/register" page="register" text="Регистрация" }}
@@ -11,12 +11,12 @@ export const AuthPage = `
 		{{/ ModuleAuthHeader }}
 
 		{{#> ModuleAuthMain }}
-			{{> InputField inputLabel="Логин" inputError="" inputName="LOGIN" }}
-			{{> InputField inputLabel="Пароль" inputError="" inputName="PWD" inputType="password" }}
+			{{> InputField inputLabel="Логин" inputError="" inputName="login" }}
+			{{> InputField inputLabel="Пароль" inputError="" inputName="password" inputType="password" }}
 		{{/ ModuleAuthMain }}
 
 		{{#> ModuleAuthFooter }}
-			{{> Button text="Авторизоваться" }}
+			{{> Button text="Войти" }}
 		{{/ ModuleAuthFooter }}
 	{{/ ModuleAuthForm }}
 {{/ Dialog }}
