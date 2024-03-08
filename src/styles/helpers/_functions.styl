@@ -1,27 +1,29 @@
-set-rem(value) { /* separate mixin, so it can be used elsewhere */
-	u = unit(value);
+set-rem(value)
 
-	if (u is 'px') {
-		return unit(value/$font-size-base, 'rem');
-	} else {
-		return unit(value, u);
-	}
-}
+  if (u is 'px')
+    return unit(value/$font-size-base, 'rem')
 
-set-font-size(value) {
-	font-size: value; /* add PX (or original value) as backup */
+  else
+    return unit(value, u)
+  // separate mixin, so it can be used elsewhere
+  u = unit(value)
 
-	if (value is inherit) {
-		/* do nothing, "inherit" has no unit */
-	} else {
-		font-size: set-rem(value);
-	}
-}
 
-set-font(size, weight = normal, lineHeight = 1.2, fontFamily = 'Nunito') {
-	font-family: fontFamily, sans-serif;
-	set-font-size(size);
-	line-height: lineHeight;
-	font-weight: weight;
-	font-style: normal;
-}
+set-font-size(value)
+
+  if (value is inherit)
+    // do nothing, "inherit" has no unit
+
+  else
+    font-size set-rem(value)
+
+  font-size value // add PX (or original value) as backup
+
+
+set-font(size, weight = normal, lineHeight = 1.2, fontFamily = 'Nunito')
+  set-font-size(size)
+  font-family fontFamily, sans-serif
+  font-weight weight
+  font-style normal
+  line-height lineHeight
+

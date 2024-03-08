@@ -1,15 +1,18 @@
-@import '../../styles/helpers/index.styl';
+@import '../../styles/helpers/index.styl'
 .link
-	font-size: inherit;
-	font-weight: inherit;
-	color: inherit;
-	text-decoration: none;
-	transition: 0.3s;
+  font-size inherit
+  font-weight inherit
 
-	&:hover
-		color: $bg-ultramarine-blue;
+  transition 0.3s
+  text-decoration none
 
-	&[disabled]
-		cursor: default;
-		opacity: 0.2;
-		color: inherit;
+  color inherit
+
+  &:hover
+    color $bg-ultramarine-blue
+
+  &[disabled]
+    cursor default
+
+    opacity 0.2
+    color inherit

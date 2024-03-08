@@ -1,27 +1,31 @@
-@import '../../styles/helpers/index.styl';
+@import '../../styles/helpers/index.styl'
 .button
-	display: inline-block;
-	text-align: center;
-	outline: none;
-	padding: set-rem(8px) set-rem(16px);
-	background: #FFFFFF;
-	border: 1px solid #000000;
-	border-radius: set-rem(2px);
-	set-font(18px, 400, 1);
-	color: $color-black;
-	cursor: pointer;
-	transition: 0.3s;
+  set-font(18px, 400, 1)
+  display inline-block
 
-	&--link
-		text-decoration: none;
+  padding set-rem(8px) set-rem(16px)
 
-	&:hover
-		opacity: 0.4;
+  cursor pointer
+  transition 0.3s
+  text-align center
 
-	&:active
-		opacity: 0.6;
+  color $color-black
+  border 1px solid #000000
+  border-radius set-rem(2px)
+  outline none
+  background #ffffff
 
-	&[disabled]
-		cursor: default;
-		opacity: 0.2;
-		color: inherit;
+  &--link
+    text-decoration none
+
+  &:hover
+    opacity 0.4
+
+  &:active
+    opacity 0.6
+
+  &[disabled]
+    cursor default
+
+    opacity 0.2
+    color inherit
