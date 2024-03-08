@@ -4,13 +4,10 @@ module.exports = {
 	],
 	plugins: ['stylelint-order'],
 	rules: {
-		'no-empty-first-line': null,
 		'no-empty-source': null,
-		'scss/no-global-function-names': null,
 		'declaration-no-important': true,
 		'declaration-block-no-duplicate-properties': true,
 		'declaration-empty-line-before': null,
-		'max-empty-lines': 2,
 		'selector-pseudo-element-no-unknown': [
 			true,
 			{

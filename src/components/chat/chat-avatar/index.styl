@@ -1,22 +1,26 @@
-@import '../../../styles/helpers/index.styl';
+@import '../../../styles/helpers/index.styl'
 .chat-avatar
-	display: block;
-	width: set-rem(56px);
-	height: set-rem(56px);
-	border-radius: 50%;
-	background: $bg-light-silver;
-	overflow: hidden;
-	position: relative;
+  position relative
 
-	&--profile
-		width: set-rem(80px);
-		height: set-rem(80px);
+  display block
+  overflow hidden
 
-	img
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
+  width set-rem(56px)
+  height set-rem(56px)
+
+  border-radius 50%
+  background $bg-light-silver
+
+  &--profile
+    width set-rem(80px)
+    height set-rem(80px)
+
+  img
+    position absolute
+    top 0
+    left 0
+
+    width 100%
+    height 100%
+    object-fit cover
+    object-position center

@@ -1,22 +1,25 @@
-@import '../../../styles/helpers/index.styl';
+@import '../../../styles/helpers/index.styl'
 .sitemap
-	display: grid;
-	grid-row-gap: set-rem(8px);
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	background: rgba($bg-black,0.4);
-	padding: set-rem(8px);
+  position fixed
+  right 0
+  bottom 0
 
-	&__title
-		set-font(14px, 600);
-		color: $color-white;
+  display grid
 
-	&__list
-		display: grid;
-		grid-row-gap: set-rem(4px);
+  padding set-rem(8px)
 
-		a
-			set-font(12px);
-			color: $color-white;
+  background rgba($bg-black,0.4)
+  grid-row-gap set-rem(8px)
+
+  &__title
+    set-font(14px, 600)
+    color $color-white
+
+  &__list
+    display grid
+    grid-row-gap set-rem(4px)
+
+    a
+      set-font(12px)
+      color $color-white
 
