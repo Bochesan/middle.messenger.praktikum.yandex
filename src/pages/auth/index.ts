@@ -3,7 +3,7 @@ export const AuthPage = `
 	{{#> ModuleAuthForm formId="authForm" formMethod="POST" formAction="/api/v1/login/" }}
 		{{#> ModuleAuthHeader }}
 			{{#> AuthTabButton }}
-				{{> Link url="/login" page="auth" disabled="true" text="Авторизация" }}
+				{{> Link url="/auth" page="auth" disabled="true" text="Авторизация" }}
 			{{/ AuthTabButton }}
 			{{#> AuthTabButton }}
 				{{> Link url="/register" page="register" text="Регистрация" }}

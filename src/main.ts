@@ -26,21 +26,24 @@ const navigateTo = (page: string) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-	navigateTo('auth');
+	const page = location.pathname.substring(1);
+	if (page.length === 0) {
+		return navigateTo('chat');
+	}
+	if (pages[page] !== undefined) {
+		return navigateTo(page);
+	}
+	return navigateTo('404');
+
 });
 
 document.addEventListener('click', e => {
 	if (e.target instanceof HTMLElement) {
-		const page = e.target.getAttribute('page');
 		const disabled = e.target.getAttribute('disabled');
 
-		if (page) {
+		if (disabled) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-
-			if (!disabled) {
-				navigateTo(page);
-			}
 		}
 	}
 });
