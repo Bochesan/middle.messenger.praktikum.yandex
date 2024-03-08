@@ -6,8 +6,13 @@
 ![Stylus](https://img.shields.io/badge/stylus-%23ff6347.svg?style=for-the-badge&logo=stylus&logoColor=white)
 ___
 
-## Demo
-Netlify link: [Messager](https://dazzling-cucurucho-d11e83.netlify.app/)
+## Демо
+Страницы Netlify:
+- [Главная](https://dazzling-cucurucho-d11e83.netlify.app/)
+- [Вход/Авторизация](https://dazzling-cucurucho-d11e83.netlify.app/auth)
+- [Регистрация](https://dazzling-cucurucho-d11e83.netlify.app/register)
+- [404](https://dazzling-cucurucho-d11e83.netlify.app/404)
+- [500](https://dazzling-cucurucho-d11e83.netlify.app/500)
 ___
 ### Проект находится в стадии разработки
 
