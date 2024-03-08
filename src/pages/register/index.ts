@@ -3,7 +3,7 @@ export const RegisterPage = `
 	{{#> ModuleAuthForm formId="registerForm" formMethod="POST" formAction="/api/v1/register/" }}
 		{{#> ModuleAuthHeader }}
 			{{#> AuthTabButton }}
-				{{> Link url="/login" page="auth" text="Войти" }}
+				{{> Link url="/login" page="auth" text="Авторизация" }}
 			{{/ AuthTabButton }}
 			{{#> AuthTabButton }}
 				{{> Link url="/register" page="register" disabled="true" text="Регистрация" }}
@@ -11,13 +11,13 @@ export const RegisterPage = `
 		{{/ ModuleAuthHeader }}
 
 		{{#> ModuleAuthMain }}
-			{{> InputField inputLabel="Почта" inputError="" inputPlaceholder="" inputName="EMAIL" inputType="email" }}
-			{{> InputField inputLabel="Логин" inputError="" inputPlaceholder="" inputName="LOGIN" }}
-			{{> InputField inputLabel="Имя" inputError="" inputPlaceholder="" inputName="NAME" }}
-			{{> InputField inputLabel="Фамилия" inputError="" inputPlaceholder="" inputName="SECONDNAME" }}
-			{{> InputField inputLabel="Телефон" inputError="" inputPlaceholder="" inputName="PHONE" inputType="phone" }}
-			{{> InputField inputLabel="Пароль" inputError="" inputPlaceholder="" inputName="PWD" inputType="password" }}
-			{{> InputField inputLabel="Пароль (еще раз)" inputPlaceholder="" inputError="" inputName="SECONDPWD" inputType="password" }}
+			{{> InputField inputLabel="Почта" inputError="" inputPlaceholder="" inputName="email" inputType="email" }}
+			{{> InputField inputLabel="Логин" inputError="" inputPlaceholder="" inputName="login" }}
+			{{> InputField inputLabel="Имя" inputError="" inputPlaceholder="" inputName="first_name" }}
+			{{> InputField inputLabel="Фамилия" inputError="" inputPlaceholder="" inputName="second_name" }}
+			{{> InputField inputLabel="Телефон" inputError="" inputPlaceholder="" inputName="phone" inputType="phone" }}
+			{{> InputField inputLabel="Пароль" inputError="" inputPlaceholder="" inputName="password" inputType="password" }}
+			{{> InputField inputLabel="Пароль (еще раз)" inputPlaceholder="" inputError="" inputName="confirm_password" inputType="password" }}
 		{{/ ModuleAuthMain }}
 
 		{{#> ModuleAuthFooter }}
