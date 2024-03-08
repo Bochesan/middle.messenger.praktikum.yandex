@@ -4,11 +4,18 @@
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Stylus](https://img.shields.io/badge/stylus-%23ff6347.svg?style=for-the-badge&logo=stylus&logoColor=white)
+___
 
+## Demo
+Netlify link: [Messager](https://dazzling-cucurucho-d11e83.netlify.app/)
 ___
 ### Проект находится в стадии разработки
 
-Прогресс:
+В текущий момент реализована верстка с моковыми данными. 
+
+Перелинковка страниц выведена в нижней части экрана.
+
+Роудмап:
 - [x] Прототипы в Figma
 - [x] Конфигурация сборщика
 - [x] Верстка
