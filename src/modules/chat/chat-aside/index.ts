@@ -8,12 +8,12 @@ export const ModuleChatAside = `
 		{{> @partial-block }}
 	</div>
 	<div class="chat-aside__footer">
-		<div class="chat-aside__settings">
+		<a href="/profile" class="chat-aside__settings">
 			<div class="chat-aside__settings-icon">
 				<img src="/media/icons/icon-settings.svg" alt="icon-settings">
 			</div>
 			<div class="chat-aside__settings-title">{{ settingsTitle }}</div>
-		</div>
+		</a>
 	</div>
 </div>
 `;

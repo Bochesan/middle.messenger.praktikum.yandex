@@ -5,7 +5,7 @@ export const Error404 = `
 		errorCode="404"
 		errorMessage="Не туда попали"
 	}}
-		{{> Button text="Назад к чатам" url="/" page="auth" }}
+		{{> Button text="Назад к чатам" url="/" }}
 	{{/ ModuleError }}
 {{/ Dialog }}
 `;
