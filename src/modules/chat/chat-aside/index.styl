@@ -1,0 +1,68 @@
+@import '../../../styles/helpers/index.styl'
+.chat-aside
+  display grid
+
+  height 100vh
+
+  border-right 1px solid #000000
+  background $bg-cultured
+  grid-template-rows auto 1fr auto
+
+  &__search
+    padding set-rem(16px)
+
+    border-bottom 1px solid #000000
+    background $bg-cultured
+
+  &__search-input
+    set-font(16px, 400, 1)
+    width 100%
+    height set-rem(32px)
+
+    text-align center
+
+    border 1px solid rgba(0,0,0,0.8)
+    border-radius 8px
+    outline none
+    background $bg-white
+
+  &__search-input:paceholder
+    color rgba(0,0,0,0.4)
+
+  &__main
+    display grid
+    overflow auto
+    align-items flex-start
+
+    padding set-rem(16px) 0
+    grid-row-gap set-rem(8px)
+    grid-template-rows max-content
+
+  &__footer
+    border-top 1px solid #000000
+    background $bg-cultured
+
+  &__settings
+    display flex
+    align-items center
+    justify-content center
+
+    padding set-rem(8px)
+
+    cursor pointer
+    transition background 0.3s
+    text-decoration none
+
+    background $bg-cultured
+    gap set-rem(4px)
+
+    &:hover
+      background darken($bg-cultured,10deg)
+
+  &__settings-icon
+    width set-rem(24px)
+    height set-rem(24px)
+
+  &__settings-title
+    set-font(16px, 500)
+    color $color-black

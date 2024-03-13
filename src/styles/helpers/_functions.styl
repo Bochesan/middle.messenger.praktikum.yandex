@@ -1,0 +1,26 @@
+set-rem(value)
+
+  if (unit(value) is 'px')
+    return unit(value/$font-size-base, 'rem')
+
+  else
+    return unit(value, unit(value))
+
+set-font-size(value)
+
+  if (value is inherit)
+    // do nothing, "inherit" has no unit
+
+  else
+    font-size set-rem(value)
+
+  font-size value // add PX (or original value) as backup
+
+
+set-font(size, weight = normal, lineHeight = 1.2, fontFamily = 'Nunito')
+  set-font-size(size)
+  font-family fontFamily, sans-serif
+  font-weight weight
+  font-style normal
+  line-height lineHeight
+

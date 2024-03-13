@@ -1,0 +1,38 @@
+@import '../../styles/helpers/index.styl'
+.input-field
+  position relative
+
+  display grid
+  grid-row-gap set-rem(4px)
+
+  &__title
+    set-font(12px, 300, 1)
+    color $color-spanish-gray
+
+  &__input
+    set-font(16px, 300, 1)
+    transition border 0.3s, color 0.3s
+
+    color $color-black
+    border none
+    border-bottom 1px solid $color-black
+    outline none
+
+    &::placeholder
+      set-font(14px, 300, 1)
+      color rgba($color-black, 0.2)
+
+    &:focus
+      border-bottom 1px solid $color-ultramarine-blue
+
+  &--error &__input
+    color 1px solid $color-deep-carmine-pink
+
+  &__error
+    set-font(8px, 300, 1)
+    display none
+
+    color $color-deep-carmine-pink
+
+  &--error &__error
+    display block
