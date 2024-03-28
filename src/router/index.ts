@@ -9,7 +9,7 @@ const PAGES: Record<string, any> = {
   // '/': [Pages.ChatPage],
   // '/profile': [Pages.ProfilePage],
   // '/edit': [Pages.EditPage],
-  // '/change-password': [Pages.ChangePasswordPage],
+  '/change-password': Pages.ChangePasswordPage,
 };
 
 export function router(name: string, selector = '#app') {

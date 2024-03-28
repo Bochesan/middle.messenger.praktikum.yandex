@@ -5,4 +5,4 @@ export { Error500 } from './errors/500';
 // export { ChatPage } from './chat';
 // export { ProfilePage } from './profile';
 // export { EditPage } from './profile/edit';
-// export { ChangePasswordPage } from './profile/change-password';
+export { ChangePasswordPage } from './profile/change-password';
