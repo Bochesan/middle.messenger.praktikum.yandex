@@ -8,4 +8,5 @@ import * as Components from './components';
 
 registerComponent('Button', Components.Button);
 registerComponent('Link', Components.Link);
+registerComponent('ErrorRoute', Components.ErrorRoute);
 document.addEventListener('DOMContentLoaded', () => router(window.location.pathname));

@@ -4,8 +4,8 @@ import * as Pages from '../pages';
 const PAGES: Record<string, any> = {
   '/auth': Pages.AuthPage,
   '/register': Pages.RegisterPage,
-  // '/404': [Pages.Error404],
-  // '/500': [Pages.Error500],
+  '/404': Pages.Error404,
+  '/500': Pages.Error500,
   // '/': [Pages.ChatPage],
   // '/profile': [Pages.ProfilePage],
   // '/edit': [Pages.EditPage],

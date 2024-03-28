@@ -1,6 +1,7 @@
 export { Button } from './button';
 export { InputField } from './input-field';
 export { Link } from './link';
+export { ErrorRoute } from './error-route';
 
 // export { Dialog } from './dialog';
 // export { Link } from './link';
