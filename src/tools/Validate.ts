@@ -39,7 +39,10 @@ const rules: { [key: string]: { regExp: RegExp, errorMessage: string} } = {
     regExp: /^\s*$/,
     errorMessage: 'Поле не должно быть пустым.'
   },
-
+  display_name: {
+    regExp: /[A-Za-zА-ЯЁа-яё-]*$/,
+    errorMessage: 'Поле не должно быть пустым.'
+  }
 };
 
 export const getValidate = (type: string, value: string): {validate: boolean, message: string} => {

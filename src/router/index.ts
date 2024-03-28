@@ -7,7 +7,7 @@ const PAGES: Record<string, any> = {
   '/404': Pages.Error404,
   '/500': Pages.Error500,
   // '/': [Pages.ChatPage],
-  // '/profile': [Pages.ProfilePage],
+  '/profile': Pages.ProfilePage,
   // '/edit': [Pages.EditPage],
   '/change-password': Pages.ChangePasswordPage,
 };

@@ -3,7 +3,7 @@ import Block from '../../tools/Block.ts';
 import {getValidate} from '../../tools/Validate.ts';
 
 const template = `
-<label class="input-field{{#if className}} {{className}}{{/if}}">
+<label class="input-field{{#if className}} {{className}}{{/if}} {{#if edit}} input-field--edit{{/if}}">
 	{{#if inputLabel}}<span class="input-field__title">{{ inputLabel }}</span>{{/if}}
 	<input
 		class="input-field__input"
@@ -11,6 +11,7 @@ const template = `
 		{{#if inputPlaceholder}}placeholder="{{inputPlaceholder}}"{{/if}}
 		{{#if inputName}}name="{{inputName}}"{{/if}}
 		{{#if inputValue}}value="{{inputValue}}"{{/if}}
+		{{#unless edit}}disabled{{/unless}}
 	>
 	<span class="input-field__error">{{ inputError}}</span>
 </label>
@@ -27,6 +28,7 @@ interface IProps {
   events?: IProps
   onValidateValue?: () => void
   onChange?: (value: string) => void
+  edit?: boolean
 }
 
 export class InputField extends Block {

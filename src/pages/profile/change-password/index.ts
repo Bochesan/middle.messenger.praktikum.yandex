@@ -26,6 +26,7 @@ const template = `
 
 interface IProps {
   ChatAvatar: Block
+  InputOldPassword: Block
   InputPassword: Block
   InputConfirmPassword: Block
   FormButton: Block
