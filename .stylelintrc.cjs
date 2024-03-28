@@ -155,7 +155,7 @@ module.exports = {
 				emptyLineBefore: 'always',
 				noEmptyLineBetween: true,
 				properties: [
-					'table-layout',
+					'table-layouts',
 					'empty-cells',
 					'caption-side',
 					'border-spacing',
