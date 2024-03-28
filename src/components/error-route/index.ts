@@ -9,9 +9,9 @@ const template = `
 `;
 
 interface IProps {
-  errorCode: any
-  errorMessage?: any
-  errorLink?: any
+  errorCode: string
+  errorMessage?: string
+  errorLink?: Block
 }
 
 export class ErrorRoute extends Block {
