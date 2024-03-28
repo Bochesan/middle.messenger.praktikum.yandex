@@ -1,16 +1,39 @@
 import './index.styl';
-export const Button = `
+import Block from '../../tools/Block.ts';
+
+const template = `
 {{#if url}}
 <a
 	class="button button--link{{#if className}} {{className}}{{/if}}"
 	href="{{url}}"
-	page="{{page}}"
 >
-	{{ text }}
+	{{ label }}
 </a>
 {{else}}
 <button class="button{{#if className}} {{className}}{{/if}}">
-	{{ text }}
+	{{ label }}
 </button>
 {{/if}}
 `;
+
+interface IProps {
+  label: string
+  className?: string
+  onClick?: (event: MouseEvent) => void
+  events?: {
+    click: (event: MouseEvent) => void
+  }
+  url?: string
+}
+
+export class Button extends Block {
+  constructor(props: IProps) {
+    super({
+      ...props
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props as Record<string, unknown>);
+  }
+}

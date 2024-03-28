@@ -1,28 +1,144 @@
-export const RegisterPage = `
-{{#> Dialog }}
-	{{#> ModuleAuthForm formId="registerForm" formMethod="POST" formAction="/api/v1/register/" }}
-		{{#> ModuleAuthHeader }}
-			{{#> AuthTabButton }}
-				{{> Link url="/auth" page="auth" text="Авторизация" }}
-			{{/ AuthTabButton }}
-			{{#> AuthTabButton }}
-				{{> Link url="/register" page="register" disabled="true" text="Регистрация" }}
-			{{/ AuthTabButton }}
-		{{/ ModuleAuthHeader }}
-
-		{{#> ModuleAuthMain }}
-			{{> InputField inputLabel="Почта" inputError="" inputPlaceholder="" inputName="email" inputType="email" }}
-			{{> InputField inputLabel="Логин" inputError="" inputPlaceholder="" inputName="login" }}
-			{{> InputField inputLabel="Имя" inputError="" inputPlaceholder="" inputName="first_name" }}
-			{{> InputField inputLabel="Фамилия" inputError="" inputPlaceholder="" inputName="second_name" }}
-			{{> InputField inputLabel="Телефон" inputError="" inputPlaceholder="" inputName="phone" inputType="phone" }}
-			{{> InputField inputLabel="Пароль" inputError="" inputPlaceholder="" inputName="password" inputType="password" }}
-			{{> InputField inputLabel="Пароль (еще раз)" inputPlaceholder="" inputError="" inputName="confirm_password" inputType="password" }}
-		{{/ ModuleAuthMain }}
-
-		{{#> ModuleAuthFooter }}
-			{{> Button text="Зарегистрироваться" }}
-		{{/ ModuleAuthFooter }}
-	{{/ ModuleAuthForm }}
-{{/ Dialog }}
+import './index.styl';
+import Block from '../../tools/Block.ts';
+import {Button, InputField, Link} from '../../components';
+const template = `
+<div class="dialog">
+  <div class="auth-main">
+    <form class="auth-form">
+      <div class="auth-header">
+        {{{LinkAuth}}}
+        {{{LinkRegister}}}
+      </div>
+      <div class="auth-main">
+        {{{InputEmail}}}
+        {{{InputLogin}}}
+        {{{InputFirstName}}}
+        {{{InputSecondName}}}
+        {{{InputPhone}}}
+        {{{InputPassword}}}
+        {{{InputConfirmPassword}}}
+      </div>
+      <div class="auth-footer">
+        {{{FormButton}}}
+      </div>
+    </form>
+  </div>
+</div>
 `;
+
+interface IProps {
+  LinkAuth: Block
+  LinkRegister: Block
+  InputEmail: Block
+  InputLogin: Block
+  InputFirstName: Block
+  InputSecondName: Block
+  InputPhone: Block
+  InputPassword: Block
+  InputConfirmPassword: Block
+  FormButton: Block
+}
+
+const Inputs = {
+  InputEmail: {
+    inputLabel: 'Почта',
+    inputName: 'email',
+    inputType: 'email',
+  },
+
+  InputLogin: {
+    inputLabel: 'Логин',
+    inputName: 'login',
+  },
+
+  InputFirstName: {
+    inputLabel: 'Имя',
+    inputName: 'first_name',
+  },
+
+  InputSecondName: {
+    inputLabel: 'Фамилия',
+    inputName: 'second_name',
+  },
+
+  InputPhone: {
+    inputLabel: 'Телефон',
+    inputName: 'phone',
+    inputType: 'phone',
+  },
+
+  InputPassword: {
+    inputLabel: 'Пароль',
+    inputName: 'password',
+    inputType: 'password',
+  },
+
+  InputConfirmPassword: {
+    inputLabel: 'Пароль (еще раз)',
+    inputName: 'confirm_password',
+    inputType: 'password',
+  }
+};
+
+export class RegisterPage extends Block {
+  constructor(props: IProps) {
+    super({
+      ...props,
+
+      LinkAuth: new Link({
+        text: 'Авторизация',
+        url: '/auth',
+      }),
+
+      LinkRegister: new Link({
+        text: 'Регистрация',
+        url: '/register',
+        disabled: true,
+      }),
+
+      InputEmail: new InputField(Inputs.InputEmail),
+      InputLogin: new InputField(Inputs.InputLogin),
+      InputFirstName: new InputField(Inputs.InputFirstName),
+      InputSecondName: new InputField(Inputs.InputSecondName),
+      InputPhone: new InputField(Inputs.InputPhone),
+      InputPassword: new InputField(Inputs.InputPassword),
+      InputConfirmPassword: new InputField(Inputs.InputConfirmPassword),
+
+      FormButton: new Button({
+        label: 'Зарегистрироваться',
+        events: {
+          click: (event) => {
+            event.preventDefault();
+            let formValid = true;
+            const formData: Record<string, string> = {};
+
+            for (const [key, value] of Object.entries(Inputs)) {
+
+              if (!this.children[key].props.onValidateValue()) {
+                formValid = false;
+              }
+
+              formData[value.inputName] = this.children[key].props.getValue();
+            }
+
+            if (this.children['InputPassword'].props.getValue() !== this.children['InputConfirmPassword'].props.getValue()) {
+              formValid = false;
+              this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
+            }
+
+            console.log('Данные формы: ', formData);
+            console.log('Статус валидации формы: ', formValid);
+
+            if (formValid) {
+              console.log('Форма отправлена');
+            }
+          }
+        },
+      })
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props);
+  }
+}
