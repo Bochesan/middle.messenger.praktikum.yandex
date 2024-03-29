@@ -1,8 +1,10 @@
 import './index.styl';
-export const ChatItem = `
+import Block from '../../../tools/Block.ts';
+import {ChatAvatar} from '../chat-avatar';
+const template = `
 <div class="chat-item">
 	<div class="chat-item__avatar">
-		{{> ChatAvatar }}
+		{{{ ChatAvatar }}}
 	</div>
 	<div class="chat-item__main">
 		<div class="chat-item__note">
@@ -16,3 +18,29 @@ export const ChatItem = `
 	</div>
 </div>
 `;
+
+interface IProps {
+  chatItemAvatar?: string
+  chatItemTitle: string
+  chatItemSubtitle?: string
+  chatItemDate?: string
+  chatItemCount?: number | null
+}
+
+export class ChatItem extends Block {
+  constructor(props: IProps) {
+    super({
+      ...props,
+
+      ChatAvatar: new ChatAvatar({
+        src: props.chatItemAvatar || ''
+      })
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props as Record<string, unknown>);
+  }
+}
+
+

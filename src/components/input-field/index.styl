@@ -25,14 +25,19 @@
     &:focus
       border-bottom 1px solid $color-ultramarine-blue
 
+    &:disabled
+      background inherit
+
   &--error &__input
     color 1px solid $color-deep-carmine-pink
 
   &__error
     set-font(8px, 300, 1)
-    display none
 
     color $color-deep-carmine-pink
 
   &--error &__error
     display block
+
+  &--edit &__input
+    background lighten($color-ultramarine-blue, 30deg)
