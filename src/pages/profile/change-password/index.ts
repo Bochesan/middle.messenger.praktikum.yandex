@@ -61,7 +61,7 @@ export class ChangePasswordPage extends Block {
 
       ChatAvatarImage: new ChatAvatar({
         mod: 'profile',
-        src: '/media/upload/avatar.jpg'
+        src: '/upload/avatar.jpg'
       }),
 
       name: 'Username',
