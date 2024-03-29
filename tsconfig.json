@@ -22,7 +22,7 @@
 		"esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "strictNullChecks": true
-	},
-	"include": ["src"],
+    "strictNullChecks": true,
+	  "include": ["src"],
+	}
 }
