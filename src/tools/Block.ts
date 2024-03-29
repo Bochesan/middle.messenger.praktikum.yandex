@@ -124,14 +124,6 @@ export default class Block {
     }
   }
 
-  setClassName(className?: string | unknown) { // TODO
-    if (typeof className === 'string') {
-      const classNames = (className as string).split(/\s+/);
-      classNames.forEach((token) => {
-        this._element?.classList.add(token);
-      });
-    }
-  }
   compile(template: string, props: TProps) {
     const propsAndStubs = { ...props };
 

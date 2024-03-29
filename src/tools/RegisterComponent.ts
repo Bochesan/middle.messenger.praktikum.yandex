@@ -6,11 +6,9 @@ export function registerComponent<Type extends typeof Block>(
   name: string,
   Component: Type
 ) {
-  // console.log(Handlebars);
   if (name in Handlebars.helpers) {
     throw new Error(`The ${name} component is already registered!`);
   }
-  // console.log('reg');
   Handlebars.registerHelper(
     name,
     function callback(this: unknown, {hash, data, fn}: HelperOptions) {

@@ -56,35 +56,40 @@ const _Inputs: Record<string, any> = {
     inputName: 'email',
     inputType: 'email',
     inputValue: 'username@yandex.ru',
-    edit: false
+    edit: false,
+    disabled: true,
   },
 
   InputLogin: {
     inputLabel: 'Логин',
     inputName: 'login',
     inputValue: 'username-13',
-    edit: false
+    edit: false,
+    disabled: true,
   },
 
   InputFirstName: {
     inputLabel: 'Имя',
     inputName: 'first_name',
     inputValue: 'Константин',
-    edit: false
+    edit: false,
+    disabled: true,
   },
 
   InputSecondName: {
     inputLabel: 'Фамилия',
     inputName: 'second_name',
     inputValue: 'Константинопольский',
-    edit: false
+    edit: false,
+    disabled: true,
   },
 
   InputNickname: {
     inputLabel: 'Имя в чате',
     inputName: 'display_name',
     inputValue: 'Username',
-    edit: false
+    edit: false,
+    disabled: true,
   },
 
   InputPhone: {
@@ -92,7 +97,8 @@ const _Inputs: Record<string, any> = {
     inputName: 'phone',
     inputType: 'phone',
     inputValue: '+79099999999',
-    edit: false
+    edit: false,
+    disabled: true,
   }
 };
 
@@ -186,8 +192,10 @@ export class ProfilePage extends Block {
             this.children[key].props.inputValue = _Inputs[key].inputValue;
           }
           this.children[key].props.edit = value;
+          this.children[key].props.disabled = !value;
         }
         this.props.edit = value;
+        this.props.disabled = !value;
       }
 
 

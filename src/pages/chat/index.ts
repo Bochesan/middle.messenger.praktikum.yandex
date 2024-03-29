@@ -1,12 +1,10 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
-import {ChatItem, ChatLayout} from '../../components';
+import {ChatItem, ChatLayout, SearchForm} from '../../components';
 const template = `
 <div class="chat-dialog">
   <div class="chat-aside">
-    <form class="chat-aside__search">
-      <input class="chat-aside__search-input" type="text" placeholder="{{ searchPlaceholder }}">
-    </form>
+    {{{ ChatSearch }}}
     <div class="chat-aside__main">
       {{{ lists }}}
     </div>
@@ -20,7 +18,7 @@ const template = `
     </div>
   </div>
   <div class="chat-main">
-    {{{ ChatLayout }}}
+    {{{ Chat }}}
   </div>
 </div>
 `;
@@ -38,10 +36,11 @@ export class ChatPage extends Block {
       ...props,
 
       searchPlaceholder: 'Search',
-      settingsTitle: 'Settings',
+      settingsTitle: 'Профиль',
 
-      ChatLayout: new ChatLayout({
-        emptyMessage: 'Empty'
+      Chat: new ChatLayout({
+        emptyMessage: 'Напишите первым',
+        messages: '1'
       }),
 
       lists: [
@@ -80,10 +79,12 @@ export class ChatPage extends Block {
           chatItemDate: '20.01.2077',
           chatItemCount: null
         }),
-      ]
+      ],
 
-
-
+      ChatSearch: new SearchForm({
+        inputName: 'search',
+        placeholder: 'Поиск'
+      })
     });
   }
 

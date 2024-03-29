@@ -14,7 +14,7 @@ const template = `
         {{{InputPassword}}}
       </div>
       <div class="auth-footer">
-        {{{FormButton}}}
+        {{{Submit}}}
       </div>
     </form>
   </div>
@@ -26,7 +26,7 @@ interface IProps {
   LinkRegister: Block
   InputLogin: Block
   InputPassword: Block
-  FormButton: Block
+  Submit: Block
 }
 
 const Inputs = {
@@ -62,7 +62,7 @@ export class AuthPage extends Block {
 
       InputPassword: new InputField(Inputs.InputPassword),
 
-      FormButton: new Button({
+      Submit: new Button({
         label: 'Войти',
         events: {
           click: (event) => {

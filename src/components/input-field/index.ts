@@ -11,7 +11,7 @@ const template = `
 		{{#if inputPlaceholder}}placeholder="{{inputPlaceholder}}"{{/if}}
 		{{#if inputName}}name="{{inputName}}"{{/if}}
 		{{#if inputValue}}value="{{inputValue}}"{{/if}}
-		{{#unless edit}}disabled{{/unless}}
+		{{#if disabled}}disabled{{/if}}
 	>
 	<span class="input-field__error">{{ inputError}}</span>
 </label>
@@ -29,6 +29,7 @@ interface IProps {
   onValidateValue?: () => void
   onChange?: (value: string) => void
   edit?: boolean
+  disabled?: boolean
 }
 
 export class InputField extends Block {

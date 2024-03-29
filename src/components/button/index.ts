@@ -19,7 +19,6 @@ const template = `
 interface IProps {
   label: string
   className?: string
-  onClick?: (event: MouseEvent) => void
   events?: {
     click: (event: MouseEvent) => void
   }

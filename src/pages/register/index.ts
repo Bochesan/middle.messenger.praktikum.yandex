@@ -19,7 +19,7 @@ const template = `
         {{{InputConfirmPassword}}}
       </div>
       <div class="auth-footer">
-        {{{FormButton}}}
+        {{{Submit}}}
       </div>
     </form>
   </div>
@@ -36,7 +36,7 @@ interface IProps {
   InputPhone: Block
   InputPassword: Block
   InputConfirmPassword: Block
-  FormButton: Block
+  Submit: Block
 }
 
 const Inputs = {
@@ -104,7 +104,7 @@ export class RegisterPage extends Block {
       InputPassword: new InputField(Inputs.InputPassword),
       InputConfirmPassword: new InputField(Inputs.InputConfirmPassword),
 
-      FormButton: new Button({
+      Submit: new Button({
         label: 'Зарегистрироваться',
         events: {
           click: (event) => {

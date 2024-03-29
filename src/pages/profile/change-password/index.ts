@@ -17,7 +17,7 @@ const template = `
       {{{InputConfirmPassword}}}
     </div>
     <div class="profile-footer">
-      {{{FormButton}}}
+      {{{Submit}}}
       {{{CancelButton}}}
     </div>
   </form>
@@ -29,7 +29,7 @@ interface IProps {
   InputOldPassword: Block
   InputPassword: Block
   InputConfirmPassword: Block
-  FormButton: Block
+  Submit: Block
   CancelButton: Block
 }
 
@@ -70,7 +70,7 @@ export class ChangePasswordPage extends Block {
       InputPassword: new InputField(Inputs.InputPassword),
       InputConfirmPassword: new InputField(Inputs.InputConfirmPassword),
 
-      FormButton: new Button({
+      Submit: new Button({
         label: 'Сохранить',
         events: {
           click: (event) => {

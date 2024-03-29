@@ -1,0 +1,21 @@
+@import '../../styles/helpers/index.styl'
+.search-form
+  padding set-rem(16px)
+
+  border-bottom 1px solid #000000
+  background $bg-cultured
+
+  &__input
+    set-font(16px, 400, 1)
+    width 100%
+    height set-rem(32px)
+
+    text-align center
+
+    border 1px solid rgba(0,0,0,0.8)
+    border-radius 8px
+    outline none
+    background $bg-white
+
+  &__input:paceholder
+    color rgba(0,0,0,0.4)
