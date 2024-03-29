@@ -4,7 +4,7 @@ import {ChatAvatar} from '../chat-avatar';
 const template = `
 <div class="chat-item">
 	<div class="chat-item__avatar">
-		{{{ ChatAvatar }}}
+		{{{ ChatAvatarImage }}}
 	</div>
 	<div class="chat-item__main">
 		<div class="chat-item__note">
@@ -32,7 +32,7 @@ export class ChatItem extends Block {
     super({
       ...props,
 
-      ChatAvatar: new ChatAvatar({
+      ChatAvatarImage: new ChatAvatar({
         src: props.chatItemAvatar || ''
       })
     });

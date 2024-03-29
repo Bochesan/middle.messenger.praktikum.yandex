@@ -7,7 +7,7 @@ const template = `
   <form class="profile-form">
     <div class="profile-header">
       <div class="profile-header__avatar">
-        {{{ ChatAvatar }}}
+        {{{ ChatAvatarImage }}}
       </div>
       <div class="profile-header__name">{{ name }}</div>
     </div>
@@ -25,7 +25,7 @@ const template = `
 `;
 
 interface IProps {
-  ChatAvatar: Block
+  ChatAvatarImage: Block
   InputOldPassword: Block
   InputPassword: Block
   InputConfirmPassword: Block
@@ -59,7 +59,7 @@ export class ChangePasswordPage extends Block {
     super({
       ...props,
 
-      ChatAvatar: new ChatAvatar({
+      ChatAvatarImage: new ChatAvatar({
         mod: 'profile',
         src: '/media/upload/avatar.jpg'
       }),
