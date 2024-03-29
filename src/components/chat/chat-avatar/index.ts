@@ -6,8 +6,6 @@ const template = `
 </div>
 `;
 
-
-
 interface IProps {
   mod?: 'profile'
   src?: string

@@ -6,7 +6,7 @@ const PAGES: Record<string, any> = {
   '/register': Pages.RegisterPage,
   '/404': Pages.Error404,
   '/500': Pages.Error500,
-  // '/': [Pages.ChatPage],
+  '/': Pages.ChatPage,
   '/profile': Pages.ProfilePage,
   // '/edit': [Pages.EditPage],
   '/change-password': Pages.ChangePasswordPage,

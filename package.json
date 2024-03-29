@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "start": "npm run build && node server.js",
     "preview": "vite preview",
-    "lint": "stylelint **/*.styl --fix"
+    "lint": "stylelint **/*.styl --fix",
+    "tsc": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

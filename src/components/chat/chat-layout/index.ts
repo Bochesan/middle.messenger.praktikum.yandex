@@ -1,12 +1,29 @@
 import './index.styl';
-export const ChatLayout = `
-{{#if messages}}
+import Block from '../../../tools/Block.ts';
+const template = `
 <div class="chat-layout">
-<!--	TODO Messages-->
+  {{#if messages}}
+    <div class="chat-layout__"></div>
+  {{else}}
+	  <div class="chat-layout__empty">{{ emptyMessage }}</div>
+  {{/if}}
 </div>
-{{else}}
-<div class="chat-layout">
-	<div class="chat-layout__empty">{{ emptyMessage }}</div>
-</div>
-{{/if}}
 `;
+
+interface IProps {
+  messages?: string
+  emptyMessage?: string
+}
+
+export class ChatLayout extends Block {
+  constructor(props: IProps) {
+    super({
+      ...props
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props as Record<string, unknown>);
+  }
+}
+

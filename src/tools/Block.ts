@@ -135,12 +135,12 @@ export default class Block {
   compile(template: string, props: TProps) {
     const propsAndStubs = { ...props };
 
-    Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+    Object.entries(this.lists).forEach(([key]) => {
+      propsAndStubs[key] = `<div data-id="__l_${this._id}"></div>`;
     });
 
-    Object.entries(this.lists).forEach(([key]) => {
-      propsAndStubs[key] = `<div data-id="__l_${key}"></div>`;
+    Object.entries(this.children).forEach(([key, child]) => {
+      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
@@ -154,25 +154,24 @@ export default class Block {
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
-      const stub = fragment.content.querySelector(`[data-id="__l_${key}"]`);
-
-      if (stub) {
-        const listContent = this._createDocumentElement('template') as HTMLTemplateElement;
-
-        child.forEach((item: unknown) => {
-          if (item instanceof Block) {
-            const content = item.getContent();
-            if (content) {
-              listContent.content.append(content);
-            }
-          } else {
-            listContent.content.append(`${item}`);
+    Object.values(this.lists).forEach((child) => {
+      const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
+      child.forEach((item: Block | HTMLElement) => {
+        if (item instanceof Block) {
+          const content = item.getContent();
+          if (content !== null) {
+            listCont.content.append(content);
           }
-        });
-        stub.replaceWith(listContent.content);
+        } else {
+          listCont.content.append(`${item}`);
+        }
+      });
+      const stub = fragment.content.querySelector(`[data-id="__l_${this._id}"]`);
+      if (stub !== null) {
+        stub.replaceWith(listCont.content);
       }
     });
+
     return fragment.content;
   }
 
