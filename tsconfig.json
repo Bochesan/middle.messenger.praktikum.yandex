@@ -18,15 +18,11 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
-		"types": [
-			"node"
-		],
+		"types": ["node"],
 		"esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "strictNullChecks": true
 	},
-	"include": [
-		"src"
-	],
+	"include": ["src"],
 }
