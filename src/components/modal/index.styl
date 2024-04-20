@@ -1,0 +1,42 @@
+@import '../../styles/helpers/index.styl'
+.modal-placeholder
+  position absolute
+
+  display none
+
+.modal
+  position fixed
+  z-index 50
+  top 0
+  left 0
+
+  display flex
+
+  width 100vh
+  height 100vh
+
+  animation fadeIn 0.3s forwards
+
+  opacity 0
+  background rgba(0,0,0,0.6)
+
+  &__container
+    position relative
+
+    margin auto
+
+  &__close
+    position absolute
+    top set-rem(8px)
+    right set-rem(8px)
+
+    cursor pointer
+    transition opacity 0.3s
+
+    &:hover
+      opacity 0.4
+
+@keyframes fadeIn
+  100%
+    opacity 1
+

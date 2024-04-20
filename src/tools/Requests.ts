@@ -1,4 +1,4 @@
-import { METHODS } from './Enums.ts';
+import { METHODS } from '../utils/Enums.ts';
 import {TRequest, TOptions} from '../types';
 
 function queryStringify(data: Record<string, unknown>): string {
@@ -17,20 +17,22 @@ function queryStringify(data: Record<string, unknown>): string {
 }
 
 export default class Request {
+  protected baseUrl = 'https://ya-praktikum.tech/api/v2';
+
   public get: TRequest = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.Get }, options.timeout);
+    return this.request(`${this.baseUrl}${url}`, { ...options, method: METHODS.Get }, options.timeout);
   };
 
   public post: TRequest = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.Post }, options.timeout);
+    return this.request(`${this.baseUrl}${url}`, { ...options, method: METHODS.Post }, options.timeout);
   };
 
   public put: TRequest = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.Put }, options.timeout);
+    return this.request(`${this.baseUrl}${url}`, { ...options, method: METHODS.Put }, options.timeout);
   };
 
   public delete: TRequest = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.Delete }, options.timeout);
+    return this.request(`${this.baseUrl}${url}`, { ...options, method: METHODS.Delete }, options.timeout);
   };
 
   request = (url: string, options: TOptions, timeout: number = 5000) => {
@@ -46,7 +48,7 @@ export default class Request {
       }
 
       for (const key in headers) {
-        xhr.setRequestHeader(key, headers[key]);
+        xhr.setRequestHeader(key, headers[key] as string);
       }
 
       xhr.onload = function () {
@@ -57,10 +59,16 @@ export default class Request {
       xhr.onabort = reject;
       xhr.ontimeout = reject;
 
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
       if (method === METHODS.Get) {
         xhr.send();
-      } else if (data) {
+      } else if (data instanceof FormData) {
         xhr.send(data as XMLHttpRequestBodyInit);
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.send(JSON.stringify(data));
       }
     });
   };

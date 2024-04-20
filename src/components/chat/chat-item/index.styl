@@ -10,6 +10,7 @@
   transition background 0.3s
   gap set-rem(16px)
 
+  &--active
   &:hover
     background rgba($bg-ultramarine-blue, 0.4)
 
@@ -37,6 +38,10 @@
 
   &__subtitle
     set-font(12px)
+    overflow hidden
+
+    max-height set-rem(28px)
+
     color $color-black
 
   &__info
