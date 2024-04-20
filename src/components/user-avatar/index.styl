@@ -1,0 +1,70 @@
+@import '../../styles/helpers/index.styl'
+.user-avatar
+  position relative
+
+  display flex
+  align-items center
+  flex-direction column
+
+  &__image
+    position relative
+
+    display block
+    overflow hidden
+
+    width set-rem(80px)
+    height set-rem(80px)
+
+    border-radius 50%
+    background $bg-light-silver
+
+  &--chat
+    width set-rem(32px)
+    height set-rem(32px)
+
+  img
+    position absolute
+    top 0
+    left 0
+
+    width 100%
+    height 100%
+    object-fit cover
+    object-position center
+
+  &__label
+    position absolute
+    top 0
+    left 0
+
+    display flex
+
+    width 100%
+    height 100%
+
+    cursor pointer
+    transition opacity 0.3s
+
+    opacity 0.4
+    border-radius 50%
+    background $bg-white
+
+    &:hover
+      opacity 0.8
+
+  &__input
+    display none
+
+  &__icon
+    margin auto
+
+    svg
+      width set-rem(40px)
+      height set-rem(40px)
+
+  &__error
+    font-size set-rem(12px)
+
+    margin-top set-rem(8px)
+
+    color $color-deep-carmine-pink

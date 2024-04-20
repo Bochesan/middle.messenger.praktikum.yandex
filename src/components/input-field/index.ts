@@ -1,6 +1,6 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
-import {getValidate} from '../../tools/Validate.ts';
+import {getValidate} from '../../utils/Validate.ts';
 
 const template = `
 <label class="input-field{{#if className}} {{className}}{{/if}} {{#if edit}} input-field--edit{{/if}}">
@@ -18,7 +18,7 @@ const template = `
 `;
 
 interface IProps {
-  inputLabel: string
+  inputLabel?: string
   className?: string
   inputType?: string
   inputPlaceholder?: string

@@ -1,0 +1,26 @@
+@import '../../styles/helpers/index.styl'
+.settings
+  display flex
+  align-items center
+  flex 1 1
+  justify-content center
+
+  padding set-rem(8px)
+
+  cursor pointer
+  transition background 0.3s
+  text-decoration none
+
+  background $bg-cultured
+  gap set-rem(4px)
+
+  &:hover
+    background darken($bg-cultured,10deg)
+
+&__icon
+  width set-rem(24px)
+  height set-rem(24px)
+
+&__title
+  set-font(16px, 500)
+  color $color-black

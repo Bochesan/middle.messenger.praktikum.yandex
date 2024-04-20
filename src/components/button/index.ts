@@ -1,5 +1,6 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
+import router from '../../router';
 
 const template = `
 {{#if url}}
@@ -28,7 +29,15 @@ interface IProps {
 export class Button extends Block {
   constructor(props: IProps) {
     super({
-      ...props
+      ...props,
+      events: {
+        click: (event: MouseEvent) => {
+          event.preventDefault();
+          if (this.props.url) {
+            router.go(this.props.url);
+          }
+        }
+      }
     });
   }
 

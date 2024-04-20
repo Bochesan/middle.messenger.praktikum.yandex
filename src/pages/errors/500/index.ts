@@ -21,7 +21,7 @@ export class Error500 extends Block {
         errorMessage: 'Мы уже фиксим',
         errorLink: new Button({
           label: 'Назад к чатам',
-          url: '/',
+          url: '/messenger',
         })
       })
     });

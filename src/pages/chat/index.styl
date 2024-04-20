@@ -24,34 +24,11 @@
     grid-row-gap set-rem(8px)
     grid-template-rows max-content
 
-  &__footer
-    border-top 1px solid #000000
-    background $bg-cultured
-
-  &__settings
+  &__header
     display flex
-    align-items center
-    justify-content center
 
-    padding set-rem(8px)
-
-    cursor pointer
-    transition background 0.3s
-    text-decoration none
-
+    border-bottom 1px solid #000000
     background $bg-cultured
-    gap set-rem(4px)
-
-    &:hover
-      background darken($bg-cultured,10deg)
-
-  &__settings-icon
-    width set-rem(24px)
-    height set-rem(24px)
-
-  &__settings-title
-    set-font(16px, 500)
-    color $color-black
 
 .chat-main
   display flex
