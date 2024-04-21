@@ -39,16 +39,15 @@ export class InputField extends Block {
       events: {
         blur: {
           element: 'input',
-          event: () => this.props.onValidateValue(),
-        },
-        change: {
-          element: 'input',
-          event: (event: MouseEvent) => this.props.onChange((event.target as HTMLInputElement).value),
-        },
+          event: (event: MouseEvent) => {
+            this.props.onValidateValue();
+            this.props.onChange((event.target as HTMLInputElement).value);
+          },
+        }
       },
 
       onChange: (value: string) => {
-        this.props.inputValue = value;
+        this.setProps({inputValue: value});
       },
 
       onValidateValue: () => {
@@ -65,7 +64,7 @@ export class InputField extends Block {
   }
 
   setError(message: string) {
-    this.props.inputError = message;
+    this.setProps({inputError: message});
   }
 
   render() {

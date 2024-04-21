@@ -11,7 +11,11 @@ const template = `
       <div class="form__main">
         {{#each users}}
           <div class="chat-user">
+          {{#if this.display_name}}
             <div class="chat-user__nick">{{this.display_name}}</div>
+            {{else}}
+            <div class="chat-user__nick">user-{{this.id}}</div>
+            {{/if}}
             <div class="chat-user__delete" data-id="{{this.id}}">
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.5571 7.44397L7.44351 20.5576" stroke="black" stroke-width="1.5" stroke-linecap="square"/>
@@ -58,6 +62,7 @@ export class ChatDeleteUser extends Block {
   }
 
   componentDidMount() {
+    console.log(store.getState().chatUsers);
     this.setProps({users: store.getState().chatUsers});
     store.on(StoreEvents.Updated, () => this.props.users = store.getState().chatUsers);
     super.componentDidMount();
