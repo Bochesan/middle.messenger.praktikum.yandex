@@ -10,7 +10,9 @@ class ChatController {
     return await chatApi
       .getChats()
       .then(async (data) => {
+        console.log('store.getState() ', store.getState());
         if (data.status === 200 && data.response.length !== 0) {
+          console.log('data ', data);
           store.set({chats: data.response});
         }
       })

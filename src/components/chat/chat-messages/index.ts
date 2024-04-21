@@ -10,7 +10,11 @@ const template = `
     <div class="chat-messages__messages">
       {{#each messages}}
         <div class="message message--{{this.class}}">
+            {{#if this.user.display_name}}
             <div class="message__user">{{this.user.display_name}}</div>
+            {{else}}
+            <div class="message__user">user-{{this.user.id}}</div>
+            {{/if}}
             <div class="message__content">{{this.content}}</div>
             <div class="message__time">{{this.time}}</div>
         </div>

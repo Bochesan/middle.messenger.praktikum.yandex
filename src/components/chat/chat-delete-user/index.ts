@@ -25,9 +25,6 @@ const template = `
           </div>
         {{/each}}
       </div>
-      <div class="form__footer">
-        {{{SubmitButton}}}
-      </div>
     </form>
 </div>
 `;
