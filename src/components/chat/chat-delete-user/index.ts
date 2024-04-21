@@ -62,7 +62,6 @@ export class ChatDeleteUser extends Block {
   }
 
   componentDidMount() {
-    console.log(store.getState().chatUsers);
     this.setProps({users: store.getState().chatUsers});
     store.on(StoreEvents.Updated, () => this.props.users = store.getState().chatUsers);
     super.componentDidMount();
