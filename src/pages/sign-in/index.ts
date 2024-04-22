@@ -77,7 +77,7 @@ export class AuthPage extends Block {
 
             // Проходимся по всем инпутам и валидируем их
             for (const [key, value] of Object.entries(Inputs)) {
-              // Вызываем onChange поле провалидировалось
+              // Получаем данные валидации
               this.children[key].onValidateValue();
               // Получаем статус валидации поля
               if (!this.children[key].getValidate()) {
