@@ -127,7 +127,7 @@ export class RegisterPage extends Block {
             formData[value.inputName] = this.children[key].getValue();
           }
 
-          if (this.children['InputPassword'].getValue() !== this.children['InputConfirmPassword'].props.getValue()) {
+          if (this.children['InputPassword'].getValue() !== this.children['InputConfirmPassword'].getValue()) {
             formValid = false;
             this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
           }
