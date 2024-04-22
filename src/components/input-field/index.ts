@@ -25,6 +25,7 @@ interface IProps {
   inputName: string
   inputValue?: string
   inputError?: string
+  focus?: boolean
   events?: IProps
   onValidateValue?: () => void
   onChange?: (value: string) => void
@@ -36,36 +37,43 @@ export class InputField extends Block {
   constructor(props: IProps) {
     super( {
       ...props,
+      inputValidate: false,
+
+      focus: false,
+
       events: {
         blur: {
           element: 'input',
-          event: () => this.props.onValidateValue(),
-        },
-        change: {
-          element: 'input',
-          event: (event: MouseEvent) => this.props.onChange((event.target as HTMLInputElement).value),
-        },
+          event: (event: MouseEvent) => {
+            this.onChange((event.target as HTMLInputElement).value);
+          },
+        }
       },
-
-      onChange: (value: string) => {
-        this.props.inputValue = value;
-      },
-
-      onValidateValue: () => {
-        const {validate, message} =  getValidate(this.props.inputName, (this._element?.querySelector('input') as HTMLInputElement).value);
-        this.setError(message);
-        return validate;
-      },
-
-      getValue: () => {
-        return this.props.inputValue;
-      }
     });
-
   }
 
-  setError(message: string) {
-    this.props.inputError = message;
+  // При событии blur записываем данные инпута и валидируем его
+  onChange(value: string) {
+    this.setValue(value);
+    this.onValidateValue();
+  }
+
+  // Проверка валидации и запись, для отображения ошибки
+  onValidateValue() {
+    const {validate, message} =  getValidate(this.props.inputName, (this._element?.querySelector('input') as HTMLInputElement).value);
+    return this.setProps({inputValidate: validate, inputError: message});
+  }
+
+  getValue() {
+    return this.props.inputValue;
+  }
+
+  setValue(value: string) {
+    return this.setProps({inputValue: value});
+  }
+
+  getValidate() {
+    return this.props.inputValidate;
   }
 
   render() {

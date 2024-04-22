@@ -71,7 +71,6 @@ class AuthController {
       .then(async () => {
         await store.reset();
         router.go(ROUTE.Auth);
-        console.log(store);
       })
       .catch((error) => {
         console.log(error);

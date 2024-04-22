@@ -6,8 +6,8 @@ import {TPassword} from '../../../api/types';
 import {userApiController} from '../../../controllers/UserController.ts';
 
 const template = `
-<div class="dialog">
-  <form class="profile-form">
+<form class="dialog">
+  <div class="profile-form">
     <div class="profile-header">
       <div class="profile-header__avatar">
         {{{ ChatAvatarImage }}}
@@ -23,8 +23,8 @@ const template = `
       {{{SubmitButton}}}
       {{{CancelButton}}}
     </div>
-  </form>
-</div>
+  </div>
+</form>
 `;
 
 interface IProps {
@@ -75,36 +75,6 @@ export class ChangePasswordPage extends Block {
 
       SubmitButton: new Submit({
         label: 'Сохранить',
-        events: {
-          click: async (event) => {
-            event.preventDefault();
-            let formValid = true;
-            const formData: Record<string, unknown> = {};
-
-            for (const [key] of Object.entries(Inputs)) {
-
-              if (!this.children[key].props.onValidateValue()) {
-                formValid = false;
-              }
-            }
-
-            if (this.children['InputPassword'].props.getValue() !== this.children['InputConfirmPassword'].props.getValue()) {
-              formValid = false;
-              this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
-            }
-
-            formData.oldPassword = this.children.InputOldPassword.props.getValue();
-            formData.newPassword = this.children.InputPassword.props.getValue();
-
-            console.log('Данные формы: ', formData);
-            console.log('Статус валидации формы: ', formValid);
-
-            if (formValid) {
-              await userApiController.changePWD(formData as TPassword);
-              console.log('Форма отправлена');
-            }
-          }
-        },
       }),
 
       CancelButton: new EventButton({
@@ -115,7 +85,40 @@ export class ChangePasswordPage extends Block {
             router.back();
           }
         }
-      })
+      }),
+
+      events: {
+        submit: async (event: MouseEvent) => {
+          event.preventDefault();
+          (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
+
+          let formValid = true;
+          const formData: Record<string, unknown> = {};
+
+          for (const [key] of Object.entries(Inputs)) {
+            this.children[key].onValidateValue();
+            if (!this.children[key].getValidate()) {
+              formValid = false;
+            }
+          }
+
+          if (this.children['InputPassword'].getValue() !== this.children['InputConfirmPassword'].getValue()) {
+            formValid = false;
+            this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
+          }
+
+          formData.oldPassword = this.children.InputOldPassword.getValue();
+          formData.newPassword = this.children.InputPassword.getValue();
+
+          console.log('Данные формы: ', formData);
+          console.log('Статус валидации формы: ', formValid);
+
+          if (formValid) {
+            await userApiController.changePWD(formData as TPassword);
+            console.log('Форма отправлена');
+          }
+        }
+      }
     });
   }
 

@@ -5,9 +5,9 @@ import {TSignin} from '../../api/types';
 import {authApiController} from '../../controllers/AuthController.ts';
 
 const template = `
-<div class="dialog">
+<form class="dialog">
   <div class="auth-main">
-    <form class="auth-form">
+    <div class="auth-form">
       <div class="auth-header">
         {{{LinkAuth}}}
         {{{LinkRegister}}}
@@ -19,9 +19,9 @@ const template = `
       <div class="auth-footer">
         {{{SubmitButton}}}
       </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
 `;
 
 interface IProps {
@@ -67,19 +67,26 @@ export class AuthPage extends Block {
 
       SubmitButton: new Submit({
         label: 'Войти',
-        events: {
-          click: async (event: MouseEvent) => {
+      }),
+
+      events: {
+          submit: async (event: MouseEvent) => {
             event.preventDefault();
+            (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
+
             let formValid = true;
             const formData: Record<string, unknown> = {};
 
+            // Проходимся по всем инпутам и валидируем их
             for (const [key, value] of Object.entries(Inputs)) {
-
-              if (!this.children[key].props.onValidateValue()) {
+              // Получаем данные валидации
+              this.children[key].onValidateValue();
+              // Получаем статус валидации поля
+              if (!this.children[key].getValidate()) {
                 formValid = false;
               }
 
-              formData[value.inputName] = this.children[key].props.getValue();
+              formData[value.inputName] = this.children[key].getValue();
             }
 
             console.log('Данные формы: ', formData);
@@ -91,7 +98,6 @@ export class AuthPage extends Block {
             }
           }
         },
-      })
     });
   }
 

@@ -34,7 +34,6 @@ export class Modal extends Block {
 
       events: {
         click: (event: MouseEvent) => {
-          event.preventDefault();
           const element  = event.target as HTMLInputElement;
           if (element.closest('.modal__close')) {
             store.set({modal: null});

@@ -25,11 +25,14 @@ export class ChatCreate extends Block {
       }),
 
       events: {
-        click: (event: MouseEvent) => {
-          event.preventDefault();
-          const element  = event.target as HTMLInputElement;
-          if (element.closest('.chat-create__button')) {
-            store.set({modal: 'modal-create-chat'});
+        click: {
+          element: '.chat-create__button',
+          event: (event: MouseEvent) => {
+            event.preventDefault();
+            const element  = event.target as HTMLInputElement;
+            if (element.closest('.chat-create__button')) {
+              store.set({modal: 'modal-create-chat'});
+            }
           }
         }
       }

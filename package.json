@@ -9,7 +9,9 @@
     "start": "npm run build && node server.js",
     "preview": "vite preview",
     "lint": "stylelint **/*.styl --fix",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
+    "eslint:fix": "eslint --fix"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

@@ -3,12 +3,14 @@ import Block from '../../tools/Block.ts';
 
 const template = `
 <button class="button{{#if className}} {{className}}{{/if}}">
-	{{ label }}
+{{#if label}}{{ label }}{{/if}}
+{{#if html}}{{html}}{{/if}}
 </button>
 `;
 
 interface IProps {
-  label: string
+  label?: string
+  html?: string
   className?: string
   events?: {
     click: (event: MouseEvent) => void

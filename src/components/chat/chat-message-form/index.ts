@@ -29,37 +29,41 @@ export class ChatMessageForm extends Block {
 
       SubmitButton: new Submit({
         label: 'Отправить',
-        events: {
-          click: async (event: MouseEvent) => {
-            event.preventDefault();
-            let formValid = true;
-            const formData: Record<string, unknown> = {};
+      }),
 
-            for (const [key, value] of Object.entries(Inputs)) {
+      events: {
+        submit: async (event: MouseEvent) => {
+          event.preventDefault();
+          (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
 
-              if (!this.children[key].props.onValidateValue()) {
-                formValid = false;
-              }
+          let formValid = true;
+          const formData: Record<string, unknown> = {};
 
-              formData[value.inputName] = this.children[key].props.getValue();
+          for (const [key, value] of Object.entries(Inputs)) {
+
+            this.children[key].onValidateValue();
+            if (!this.children[key].getValidate()) {
+              formValid = false;
             }
 
-            console.log('Данные формы: ', formData);
-            console.log('Статус валидации формы: ', formValid);
-
-            if (formValid) {
-              await window.socket?.send(JSON.stringify({
-                content: formData.chat_message,
-                type: 'message',
-              }));
-              for (const [key] of Object.entries(Inputs)) {
-                this.children[key].props.onChange('');
-              }
-              console.log('Форма отправлена');
-            }
+            formData[value.inputName] = this.children[key].getValue();
           }
-        },
-      })
+
+          console.log('Данные формы: ', formData);
+          console.log('Статус валидации формы: ', formValid);
+
+          if (formValid) {
+            await window.socket?.send(JSON.stringify({
+              content: formData.chat_message,
+              type: 'message',
+            }));
+            for (const [key] of Object.entries(Inputs)) {
+              this.children[key].setValue('');
+            }
+            console.log('Форма отправлена');
+          }
+        }
+      },
     });
   }
 

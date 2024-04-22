@@ -17,6 +17,7 @@ export class Logout extends Block {
       events: {
         click: async () => {
           await authApiController.logout();
+          location.reload();
         }
       }
     });

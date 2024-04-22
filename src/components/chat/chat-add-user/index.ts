@@ -5,8 +5,8 @@ import {TAddUsers} from '../../../api/types';
 import {store} from '../../../store';
 
 const template = `
-<div class="dialog">
-    <form class="form">
+<form class="dialog">
+    <div class="form">
       <div class="form__header">{{{ head }}}</div>
       <div class="form__main">
         {{{InputIDName}}}
@@ -14,8 +14,8 @@ const template = `
       <div class="form__footer">
         {{{SubmitButton}}}
       </div>
-    </form>
-</div>
+    </div>
+</form>
 `;
 
 const Inputs = {
@@ -35,41 +35,45 @@ export class ChatAddUser extends Block {
 
       SubmitButton: new Submit({
         label: 'Добавить',
-        events: {
-          click: async (event: MouseEvent) => {
-            event.preventDefault();
-            let formValid = true;
-            const formData: Record<string, unknown> = {};
+      }),
 
-            for (const [key, value] of Object.entries(Inputs)) {
+      events: {
+        submit: async (event: MouseEvent) => {
+          event.preventDefault();
+          (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
 
-              if (!this.children[key].props.onValidateValue()) {
-                formValid = false;
-              }
+          let formValid = true;
+          const formData: Record<string, unknown> = {};
 
-              formData[value.inputName] = this.children[key].props.getValue();
+          for (const [key, value] of Object.entries(Inputs)) {
+
+            this.children[key].onValidateValue();
+            if (!this.children[key].getValidate()) {
+              formValid = false;
             }
 
-            console.log('Данные формы: ', formData);
-            console.log('Статус валидации формы: ', formValid);
-
-            if (formValid) {
-              const users = (formData.user_name as string).split(',');
-              const computedFormData: TAddUsers = {
-                users: users.map(Number),
-                chatId: store.getState().chat.id
-              };
-              await chatApiController.addUsers(computedFormData as TAddUsers).then(() => {
-                for (const [key] of Object.entries(Inputs)) {
-                  this.children[key].props.onChange('');
-                  store.set({modal: null});
-                }
-              });
-              console.log('Форма отправлена');
-            }
+            formData[value.inputName] = this.children[key].getValue();
           }
-        },
-      })
+
+          console.log('Данные формы: ', formData);
+          console.log('Статус валидации формы: ', formValid);
+
+          if (formValid) {
+            const users = (formData.user_name as string).split(',');
+            const computedFormData: TAddUsers = {
+              users: users.map(Number),
+              chatId: store.getState().chat.id
+            };
+            await chatApiController.addUsers(computedFormData as TAddUsers).then(() => {
+              for (const [key] of Object.entries(Inputs)) {
+                this.children[key].setValue('');
+                store.set({modal: null});
+              }
+            });
+            console.log('Форма отправлена');
+          }
+        }
+      },
     });
   }
 
