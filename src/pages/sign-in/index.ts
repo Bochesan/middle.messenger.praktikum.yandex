@@ -72,6 +72,8 @@ export class AuthPage extends Block {
       events: {
           submit: async (event: MouseEvent) => {
             event.preventDefault();
+            (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
+
             let formValid = true;
             const formData: Record<string, unknown> = {};
 
@@ -82,11 +84,6 @@ export class AuthPage extends Block {
               // Получаем статус валидации поля
               if (!this.children[key].getValidate()) {
                 formValid = false;
-              }
-
-              // Если форма не валидна выходим из цикла
-              if (!formValid) {
-                return false;
               }
 
               formData[value.inputName] = this.children[key].getValue();

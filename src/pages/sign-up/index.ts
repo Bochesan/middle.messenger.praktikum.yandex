@@ -4,9 +4,9 @@ import {Submit, InputField, Link} from '../../components';
 import {TSignup} from '../../api/types';
 import {authApiController} from '../../controllers/AuthController.ts';
 const template = `
-<div class="dialog">
+<form class="dialog">
   <div class="auth-main">
-    <form class="auth-form">
+    <div class="auth-form">
       <div class="auth-header">
         {{{LinkAuth}}}
         {{{LinkRegister}}}
@@ -23,9 +23,9 @@ const template = `
       <div class="auth-footer">
         {{{SubmitButton}}}
       </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
 `;
 
 interface IProps {
@@ -108,36 +108,39 @@ export class RegisterPage extends Block {
 
       SubmitButton: new Submit({
         label: 'Зарегистрироваться',
-        events: {
-          click: async (event) => {
-            event.preventDefault();
-            let formValid = true;
-            const formData: Record<string, unknown> = {};
+      }),
 
-            for (const [key, value] of Object.entries(Inputs)) {
+      events: {
+        submit: async (event: MouseEvent) => {
+          event.preventDefault();
+          (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
 
-              if (!this.children[key].props.onValidateValue()) {
-                formValid = false;
-              }
+          let formValid = true;
+          const formData: Record<string, unknown> = {};
 
-              formData[value.inputName] = this.children[key].props.getValue();
-            }
-
-            if (this.children['InputPassword'].props.getValue() !== this.children['InputConfirmPassword'].props.getValue()) {
+          for (const [key, value] of Object.entries(Inputs)) {
+            this.children[key].onValidateValue();
+            if (!this.children[key].getValidate()) {
               formValid = false;
-              this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
             }
 
-            console.log('Данные формы: ', formData);
-            console.log('Статус валидации формы: ', formValid);
-
-            if (formValid) {
-              await authApiController.signup(formData as TSignup);
-              console.log('Форма отправлена');
-            }
+            formData[value.inputName] = this.children[key].getValue();
           }
-        },
-      })
+
+          if (this.children['InputPassword'].getValue() !== this.children['InputConfirmPassword'].props.getValue()) {
+            formValid = false;
+            this.children['InputConfirmPassword'].props.inputError = 'Пароли не совпадают';
+          }
+
+          console.log('Данные формы: ', formData);
+          console.log('Статус валидации формы: ', formValid);
+
+          if (formValid) {
+            await authApiController.signup(formData as TSignup);
+            console.log('Форма отправлена');
+          }
+        }
+      },
     });
   }
 

@@ -25,6 +25,7 @@ interface IProps {
   inputName: string
   inputValue?: string
   inputError?: string
+  focus?: boolean
   events?: IProps
   onValidateValue?: () => void
   onChange?: (value: string) => void
@@ -37,6 +38,9 @@ export class InputField extends Block {
     super( {
       ...props,
       inputValidate: false,
+
+      focus: false,
+
       events: {
         blur: {
           element: 'input',
@@ -50,7 +54,7 @@ export class InputField extends Block {
 
   // При событии blur записываем данные инпута и валидируем его
   onChange(value: string) {
-    this.setProps({inputValue: value});
+    this.setValue(value);
     this.onValidateValue();
   }
 
@@ -62,6 +66,10 @@ export class InputField extends Block {
 
   getValue() {
     return this.props.inputValue;
+  }
+
+  setValue(value: string) {
+    return this.setProps({inputValue: value});
   }
 
   getValidate() {

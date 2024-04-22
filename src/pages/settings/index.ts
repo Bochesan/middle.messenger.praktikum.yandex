@@ -8,8 +8,8 @@ import {RESOURCES, ROUTE} from '../../utils/Enums.ts';
 import {userApiController} from '../../controllers/UserController.ts';
 
 const template = `
-<div class="dialog">
-  <form class="profile-form">
+<form class="dialog">
+  <div class="profile-form">
     <div class="profile-header">
       <div class="profile-header__avatar">
         {{{ ProfileAvatar }}}
@@ -35,8 +35,8 @@ const template = `
     {{/if}}
     </div>
 
-  </form>
-</div>
+  </div>
+</form>
 `;
 
 interface IProps {
@@ -160,33 +160,6 @@ export class ProfilePage extends Block {
 
       SaveButton: new Submit({
         label: 'Сохранить',
-        events: {
-          click: async (event: MouseEvent) => {
-            event.preventDefault();
-            let formValid = true;
-            const formData: Record<string, unknown> = {};
-
-            for (const [key, value] of Object.entries(Inputs)) {
-
-              if (!this.children[key].props.onValidateValue()) {
-                formValid = false;
-              }
-
-              formData[value.inputName] = this.children[key].props.getValue();
-            }
-
-            console.log('Данные формы: ', formData);
-            console.log('Статус валидации формы: ', formValid);
-
-            if (formValid) {
-              await userApiController.edit(formData as TUser);
-              await this.initState();
-              console.log('Форма отправлена');
-              this.children.ProfileAvatar.setProps({edit: false});
-              this.props.handleEdit(false);
-            }
-          }
-        },
       }),
 
       CancelButton: new EventButton({
@@ -203,7 +176,37 @@ export class ProfilePage extends Block {
       handleEdit: async (value: boolean) => {
         this.setProps({edit: value});
         this.initState(value);
-      }
+      },
+
+      events: {
+        submit: async (event: MouseEvent) => {
+          event.preventDefault();
+          (event.target as HTMLInputElement).querySelectorAll('input').forEach(input => input.blur());
+
+          let formValid = true;
+          const formData: Record<string, unknown> = {};
+
+          for (const [key, value] of Object.entries(Inputs)) {
+            this.children[key].onValidateValue();
+            if (!this.children[key].getValidate()) {
+              formValid = false;
+            }
+
+            formData[value.inputName] = this.children[key].getValue();
+          }
+
+          console.log('Данные формы: ', formData);
+          console.log('Статус валидации формы: ', formValid);
+
+          if (formValid) {
+            await userApiController.edit(formData as TUser);
+            await this.initState();
+            console.log('Форма отправлена');
+            this.children.ProfileAvatar.setProps({edit: false});
+            this.props.handleEdit(false);
+          }
+        }
+      },
     });
   }
 

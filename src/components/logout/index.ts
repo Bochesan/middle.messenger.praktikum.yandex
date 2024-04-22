@@ -1,7 +1,6 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
 import {authApiController} from '../../controllers/AuthController.ts';
-import {store} from '../../store';
 
 const template = `
 <div class="user-logout">
@@ -18,7 +17,7 @@ export class Logout extends Block {
       events: {
         click: async () => {
           await authApiController.logout();
-          store.reset();
+          location.reload();
         }
       }
     });
