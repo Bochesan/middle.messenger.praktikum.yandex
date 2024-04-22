@@ -1,0 +1,52 @@
+@import '../../../styles/helpers/index.styl'
+.message-form
+  display flex
+  align-items center
+
+  height set-rem(80px)
+  padding set-rem(16px) 0
+
+  border-top 1px solid #000000
+  gap 16px
+
+  &__input
+    width 100%
+
+    input
+    input:focus
+    input:active
+      set-font(16px, 400, 1)
+      width 100%
+      height set-rem(32px)
+      padding set-rem(4px) set-rem(16px)
+
+      border none
+      border-radius 8px
+      outline none
+      background $cultured
+
+  &__input:paceholder
+    color rgba(0,0,0,0.4)
+
+  &__file
+    cursor pointer
+    transition color 0.3s
+
+    color $spanish-gray
+
+    &:hover
+      color $ultramarine-blue
+
+    input
+      display none
+
+  &__button
+    cursor pointer
+    transition opacity 0.3s
+
+    border none
+    outline none
+    background none
+
+    &:hover
+      opacity 0.6

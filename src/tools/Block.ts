@@ -10,6 +10,7 @@ export default class Block {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
+    FLOW_CWU: 'flow:component-will-unmount',
   } as const;
 
   public _element: HTMLElement | null = null;
@@ -28,7 +29,7 @@ export default class Block {
     this.tagName = 'div';
     this.props = this._makePropsProxy({ ...props, __id: this._id });
     this.children = this._makePropsProxy(children);
-    this.lists = this._makePropsProxy(lists);
+    this.lists = lists;
     this.state = {};
     const eventBus = new EventBus();
     this.eventBus = () => eventBus;
@@ -59,6 +60,7 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
   }
 
   init() {
@@ -95,6 +97,7 @@ export default class Block {
       return;
     }
     Object.assign(this.props, nextProps);
+
   }
 
   get element(): HTMLElement | null {
@@ -214,7 +217,7 @@ export default class Block {
     Object.keys(events).forEach((eventName) => {
       if (this._element) {
         if (events[eventName].element !== undefined) {
-          this._element.querySelector(events[eventName].element).addEventListener(eventName, events[eventName].event);
+          this._element.querySelector(events[eventName].element)?.addEventListener(eventName, events[eventName].event);
         } else {
           this._element.addEventListener(eventName, events[eventName]);
         }
@@ -230,5 +233,21 @@ export default class Block {
         this._element.removeEventListener(eventName, events[eventName]);
       }
     });
+  }
+
+  show() {
+    this.getContent()!.style.display = 'grid';
+  }
+
+  hide() {
+    this.getContent()!.style.display = 'none';
+  }
+
+  _componentWillUnmount() {
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {
+    this.element?.remove();
   }
 }

@@ -1,20 +1,20 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
-import {ChatItem, ChatLayout, SearchForm} from '../../components';
+import {ChatCreate, ChatItem, ChatLayout, ChatList, Logout, SearchForm, Settings} from '../../components';
+import {store, StoreEvents} from '../../store';
+import {IChatItem} from '../../api/types';
+import {chatApiController} from '../../controllers/ChatController.ts';
+
 const template = `
 <div class="chat-dialog">
   <div class="chat-aside">
-    {{{ ChatSearch }}}
-    <div class="chat-aside__main">
-      {{{ lists }}}
+    <div class="chat-aside__header">
+      {{{ UserLogout }}}
+      {{{ UserSettings }}}
+      {{{ UserChatCreate }}}
     </div>
-    <div class="chat-aside__footer">
-      <a href="/profile" class="chat-aside__settings">
-        <div class="chat-aside__settings-icon">
-          <img src="/media/icons/icon-settings.svg" alt="icon-settings">
-        </div>
-        <div class="chat-aside__settings-title">{{ settingsTitle }}</div>
-      </a>
+    <div class="chat-aside__main">
+      {{{ ChatItems }}}
     </div>
   </div>
   <div class="chat-main">
@@ -26,7 +26,6 @@ const template = `
 interface IProps {
   searchPlaceholder?: string
   settingsTitle?: string
-  chats?: Array<Block>
   ChatLayout: Block
 }
 
@@ -38,54 +37,33 @@ export class ChatPage extends Block {
       searchPlaceholder: 'Search',
       settingsTitle: 'Профиль',
 
-      Chat: new ChatLayout({
-        emptyMessage: 'Напишите первым',
-        messages: '1'
-      }),
+      Chat: new ChatLayout(),
 
-      lists: [
-        new ChatItem({
-          chatItemAvatar: '/upload/avatar.jpg',
-          chatItemTitle: 'Chat name',
-          chatItemSubtitle: 'Chat subtitle',
-          chatItemDate: '20.01.2077',
-          chatItemCount: 3
-        }),
-        new ChatItem({
-          chatItemAvatar: '',
-          chatItemTitle: 'Chat name',
-          chatItemSubtitle: 'Chat subtitle',
-          chatItemDate: '20.01.2077',
-          chatItemCount: null
-        }),
-        new ChatItem({
-          chatItemAvatar: '/upload/avatar-2.jpeg',
-          chatItemTitle: 'Chat name',
-          chatItemSubtitle: 'Chat subtitle',
-          chatItemDate: '20.01.2077',
-          chatItemCount: null
-        }),
-        new ChatItem({
-          chatItemAvatar: '/upload/avatar-3.jpeg',
-          chatItemTitle: 'Chat name',
-          chatItemSubtitle: 'Chat subtitle',
-          chatItemDate: '20.01.2077',
-          chatItemCount: 1
-        }),
-        new ChatItem({
-          chatItemAvatar: '',
-          chatItemTitle: 'Chat name',
-          chatItemSubtitle: 'Chat subtitle',
-          chatItemDate: '20.01.2077',
-          chatItemCount: null
-        }),
-      ],
+      UserLogout: new Logout(),
+      UserSettings: new Settings(),
+      UserChatCreate: new ChatCreate(),
+
+      ChatItems: new ChatList({
+        chats: null
+      }),
 
       ChatSearch: new SearchForm({
         inputName: 'search',
         placeholder: 'Поиск'
       })
     });
+  }
+
+  createChatItems(chats: Array<IChatItem> | null) {
+    if (chats !== null) {
+      return chats.map((chat: IChatItem) => new ChatItem(chat));
+    }
+  }
+
+  async componentDidMount() {
+    await chatApiController.getChats();
+    this.children.ChatItems.setProps({chats: this.createChatItems(store.getState().chats)});
+    store.on(StoreEvents.Updated, () => this.children.ChatItems.setProps({chats: this.createChatItems(store.getState().chats)}));
   }
 
   render() {

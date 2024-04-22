@@ -1,5 +1,6 @@
 import './index.styl';
 import Block from '../../tools/Block.ts';
+import router from '../../router';
 const template = `
 <a
 	href="{{ url }}"
@@ -18,7 +19,7 @@ interface IProps {
   disabled?: boolean
   onClick?: () => void
   events?: {
-    click?: () => void
+    click?: (event: MouseEvent) => void
   }
 }
 
@@ -26,6 +27,13 @@ export class Link extends Block {
   constructor(props: IProps) {
     super({
       ...props,
+      events: {
+        click: (event: MouseEvent) => {
+          event.preventDefault();
+
+          router.go(this.props.url);
+        }
+      }
     });
   }
 

@@ -21,7 +21,7 @@ export class Error404 extends Block {
         errorMessage: 'Не туда попали',
         errorLink: new Button({
           label: 'Назад к чатам',
-          url: '/',
+          url: '/messenger',
         })
       })
     });
