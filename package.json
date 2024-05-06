@@ -34,6 +34,7 @@
     "stylelint-order": "^6.0.4",
     "stylelint-stylus": "^1.0.0",
     "stylus": "^0.63.0",
+    "stylus-loader": "^8.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.1",

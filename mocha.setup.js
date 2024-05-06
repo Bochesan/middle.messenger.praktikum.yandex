@@ -1,10 +1,11 @@
 import { JSDOM } from 'jsdom';
 
-const jsdom = new JSDOM('<body></body>', { url: 'https://example.org/' });
+const jsdom = new JSDOM('<main id="app"></main>', { url: 'https://example.org/' });
 
 const keys = [
   'document',
   'DocumentFragment',
+  'window',
   'HTMLElement',
   'Node',
   'Event',

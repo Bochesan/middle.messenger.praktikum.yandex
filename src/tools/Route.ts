@@ -1,18 +1,15 @@
 import Block from './Block.ts';
 import renderDOM from './RenderDOM.ts';
 import { TProps } from '../types';
-import {store} from '../store';
-import router from '../router';
-import {ROUTE} from '../utils/Enums.ts';
 
 class Route {
-  private _pathname: string;
+  public _pathname: string;
 
-  private readonly _blockClass: typeof Block;
+  public readonly _blockClass: typeof Block;
 
-  private _block: Block | null = null;
+  public _block: Block | null = null;
 
-  private readonly _props: TProps;
+  public readonly _props: TProps;
 
   constructor(pathname: string, view: typeof Block, props: TProps) {
     this._pathname = pathname;
@@ -22,15 +19,6 @@ class Route {
   }
 
   navigate(pathname: string) {
-    const {user} = store.getState();
-    if (user.id) {
-      switch (location.pathname) {
-        case ROUTE.Auth:
-        case ROUTE.Register:
-          return router.go(ROUTE.Chat);
-      }
-    }
-
     if (pathname === this._pathname) {
       this._pathname = pathname;
       this.render();
@@ -39,7 +27,8 @@ class Route {
 
   leave() {
     if (this._block) {
-      this._block.hide();
+      this._block.componentWillUnmount();
+      this._block = null;
     }
   }
 
@@ -54,8 +43,6 @@ class Route {
       renderDOM(rootQuery, this._block);
       return;
     }
-
-    this._block.show();
   }
 }
 

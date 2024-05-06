@@ -239,10 +239,6 @@ export default class Block {
     this.getContent()!.style.display = 'grid';
   }
 
-  hide() {
-    this.getContent()!.style.display = 'none';
-  }
-
   _componentWillUnmount() {
     this.componentWillUnmount();
   }

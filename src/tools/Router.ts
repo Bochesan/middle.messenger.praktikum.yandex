@@ -4,9 +4,9 @@ import Route from './Route';
 class Router {
   private static __instance: Router;
 
-  private routes: Route[] | undefined;
+  public routes: Route[] | undefined;
 
-  private history: History | undefined;
+  public history: History | undefined;
 
   private readonly _rootQuery: string | undefined;
 
