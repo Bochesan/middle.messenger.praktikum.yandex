@@ -20,7 +20,7 @@ export default class Block {
   public children: TProps;
   public lists: TProps;
   public state: { [key: string]: unknown };
-  private eventBus: () => EventBus;
+  public eventBus: () => EventBus;
 
   constructor(propsWithChildren: TProps) {
     const { children, props, lists } = this._getChildrenPropsAndProps(propsWithChildren);
