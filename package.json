@@ -13,7 +13,8 @@
     "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
     "eslint:fix": "eslint --fix",
     "prepare": "husky install",
-    "test": "mocha --require mocha.setup.js"
+    "test": "mocha --require mocha.setup.js",
+    "pre-commit": "npm run lint && npm run test"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
@@ -44,5 +45,10 @@
     "express": "^4.18.3",
     "normalize.css": "^8.0.1",
     "uniqid": "^5.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   }
 }
