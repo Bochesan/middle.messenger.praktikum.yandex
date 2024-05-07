@@ -11,18 +11,32 @@
     "lint": "stylelint **/*.styl --fix",
     "tsc": "tsc --noEmit",
     "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
-    "eslint:fix": "eslint --fix"
+    "eslint:fix": "eslint --fix",
+    "prepare": "husky install",
+    "test": "mocha --require mocha.setup.js",
+    "pre-commit": "npm run lint && npm run test"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/jsdom": "^21.1.6",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.24",
+    "@types/sinon": "^17.0.3",
     "@types/uniqid": "^5.3.4",
+    "chai": "^5.1.0",
     "eslint": "^8.57.0",
     "handlebars": "^4.7.8",
+    "husky": "8.0.3",
+    "jsdom": "^24.0.0",
+    "mocha": "^10.4.0",
     "prettier": "^3.2.5",
+    "sinon": "^17.0.1",
     "stylelint": "^16.2.1",
     "stylelint-order": "^6.0.4",
     "stylelint-stylus": "^1.0.0",
     "stylus": "^0.63.0",
+    "stylus-loader": "^8.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.1",
     "vite": "^5.1.4"
@@ -31,5 +45,10 @@
     "express": "^4.18.3",
     "normalize.css": "^8.0.1",
     "uniqid": "^5.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   }
 }
